@@ -1,0 +1,117 @@
+
+$userRepository= new UserRepository;
+
+PHP Standards Recommendations => https://www.php-fig.org/psr/
+
+=============================== PSR-1 ===============================
+
+class User extends Model
+{
+    user Trait;
+
+    const USR_STATUS = 0;
+
+    protected $user;
+
+    public function __construct()
+    {
+
+
+    }
+
+    function get_user()
+    {
+
+    }
+
+}
+
+=============================== PSR-1 ===============================
+
+foreach($collection as $value){
+
+}
+
+=============================== PSR-1 ===============================
+
+if(exp){
+
+
+}
+
+=============================== PSR-1 ===============================
+class UserModel
+{
+
+}
+=============================== PSR-1 ===============================
+function snake_case()
+{
+  // function
+}
+
+public function getUserById()
+{
+  // method  
+}
+=============================== PSR-1 ===============================
+class UserRespository
+{
+    // fetch the user associaed with product it
+    public function find($id)
+    {
+
+    }
+}
+$userRespository->find(3);
+// enhance
+class UserRespository
+{
+    // fetch the user associaed with product it
+    public function find($product_id)
+    {
+
+    }
+}
+$userRespository->find(3);
+// enhance
+class UserRespository
+{
+    // fetch the user associaed with product it
+    public function findByProductId($product_id)
+    {
+
+    }
+}
+$userRespository->find(3);
+=============================== PSR-1 ===============================
+// wrong
+class UserRespository
+{
+    public function prepear($id)
+    {
+
+    }
+}
+=============================== PSR-1 ===============================
+// wrong
+function register()
+{
+    // validate
+    // check if username/email exists
+    // insert database
+    // return recent created user 
+}
+// right
+function register()
+{
+    return User::create();
+}
+=============================== PSR-1 ===============================
+
+SOC = Separation of concerns
+
+=============================== PSR-2 ===============================
+https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
+https://www.php-fig.org/psr/psr-12/
+=============================== PSR-2 ===============================
