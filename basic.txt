@@ -34,7 +34,7 @@ foreach($collection as $value){
 
 =============================== PSR-1 ===============================
 
-if(exp){
+if(expr) {
 
 
 }
@@ -68,6 +68,8 @@ $userRespository->find(3);
 class UserRespository
 {
     // fetch the user associaed with product it
+    // $product_id or $productId => good
+    // $Product_Id => bad
     public function find($product_id)
     {
 
@@ -78,15 +80,15 @@ $userRespository->find(3);
 class UserRespository
 {
     // fetch the user associaed with product it
-    public function findByProductId($product_id)
+    public function findByProductId($id)
     {
 
     }
 }
 $userRespository->find(3);
 =============================== PSR-1 ===============================
-// wrong
-class UserRespository
+// bad
+class OrderRespository
 {
     public function prepear($id)
     {
@@ -94,15 +96,15 @@ class UserRespository
     }
 }
 =============================== PSR-1 ===============================
-// wrong
-function register()
+// bad
+function register($data)
 {
     // validate
     // check if username/email exists
     // insert database
     // return recent created user 
 }
-// right
+// right => insert user in database and return it this is the function role
 function register()
 {
     return User::create();
@@ -110,8 +112,100 @@ function register()
 =============================== PSR-1 ===============================
 
 SOC = Separation of concerns
+SRP = Single Responsibility Principle
+=============================== ***** ===============================
+Models: 
+layer of database represent only the database and relations of 
+tables what enter to database and their format
+properties and relationships
+=============================== ***** ===============================
+when write a code write with one level of indention
+this is not code => bad
+function register($data)
+{
+    if(isset($_POST['username'], $_POST['email'])){
+        
+        if(filter_var(variable,filter,options)){
 
+            if(filter_var){
+                if(user_is_created){
+                    return response;
+                }else{
+                    
+                }
+            }else{
+
+            }
+        }else{
+
+        }
+    }
+}
+=============================== ***** ===============================
+just single level of indention => otherwise trash code or bad smell code
+=============================== ***** ===============================
+enhance => skip for else (do not write else)
+// 4 level of indention => trash code or bad smell code
+function register($data)
+{
+    //0
+    if(isset($_POST['username'], $_POST['email'])){
+        //1
+        if(filter_var(variable,filter,options)){
+            //2
+            if(filter_var){
+                //3
+                if(user_is_created){
+                    //4
+                    return response
+                }
+                return;
+            }
+            return;
+        }
+        return;
+    }
+}
+=============================== ***** ===============================
+enhance => be defensive
+do not make code with greater than 1 level of indention
+avoid code with if else
+leave if and else
+write code without if through strategy design pattern and polymorphism 
+or use methods or functions like array functions
+reduce using if and else as possible as you can and it's great to write without it at all
+function register($data)
+{
+    //0
+    if(isset($_POST['username'], $_POST['email'])){
+        //1
+        if(!filter_var){
+            return;
+        }
+        if(!filter_var){
+            return;
+        }
+        if(!filter_var){
+            return;
+        }
+
+        return User::create();
+        
+    }
+}
 =============================== PSR-2 ===============================
 https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
 https://www.php-fig.org/psr/psr-12/
 =============================== PSR-2 ===============================
+line should bew not more than 120 characters
+=============================== ***** ===============================
+be specific not general
+class UserService => bad 
+class UserLoginService => good
+=============================== ***** ===============================
+parameters should not be greater than 3 
+=============================== ***** ===============================
+// no more if else
+
+
+
