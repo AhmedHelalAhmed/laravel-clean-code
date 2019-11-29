@@ -9,8 +9,22 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// O in S.O.L.I.D principles
+// Open/Closed principle
+// this not closed for modification=> if we need to add new service
+
+Route::get('/messaging/{service}', function ($service) {
+    if ($service == 'nexmo') {
+// process
+        dd('nexmo');
+    } elseif ($service == 'twilio') {
+// process
+        dd('twilio');
+    }
 });
