@@ -18,13 +18,15 @@ Route::get('/', function () {
 // O in S.O.L.I.D principles
 // Open/Closed principle
 // this not closed for modification=> if we need to add new service
-
+// if we need to add new service => this not closed for modification
 Route::get('/messaging/{service}', function ($service) {
     if ($service == 'nexmo') {
-// process
+        // process
         dd('nexmo');
     } elseif ($service == 'twilio') {
-// process
+        // process
         dd('twilio');
+    } elseif ($service == 'messagebird') {
+        dd('messagebird');
     }
 });
