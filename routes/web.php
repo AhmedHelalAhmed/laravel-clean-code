@@ -1,5 +1,7 @@
 <?php
 
+use App\Logging\Logger;
+use App\Logging\LoggerInterface;
 use App\Messaging\MessagingService;
 
 /*
@@ -36,5 +38,18 @@ Route::get('/messaging/{service}', function ($service) {
     }
 
     throw new Exception("Invalid service");
+
+});
+
+Route::get('/logging/{type}', function ($type) {
+
+    $type = sprintf("App\\Logging\\%sLogger", ucfirst($type));
+
+    if (is_a($type, LoggerInterface::class, true)) {
+        $logger = new Logger(new $type);
+        $logger->log();
+    }
+
+    throw new Exception("Invalid logging");
 
 });
