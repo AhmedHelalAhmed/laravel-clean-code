@@ -2,6 +2,8 @@
 
 use App\Logging\Logger;
 use App\Logging\LoggerInterface;
+use App\MessagingContuxtualBinding\Contracts\MessagingService as MessagingInterface;
+use App\MessagingContuxtualBinding\Messaging as MessagingStrategy;
 use App\MessagingTwoWays\AdHoc\MessagingService as AdHoc;
 use App\MessagingTwoWays\Strategy\Messaging;
 use App\MessagingTwoWays\Strategy\MessagingService as Strategy;
@@ -87,5 +89,25 @@ Route::get('/strategy/{service}', function ($service) {
     }
 
     throw new Exception("Invalid service");
+
+});
+
+// contuxtual binding in laravel
+// interface bind different class (types)
+// one class to make interchange between different class using IOC
+Route::get('/contuxtual-binding/{service}', function ($service) {
+
+    app()
+        ->when(MessagingStrategy::class)
+        ->needs(MessagingInterface::class)
+        ->give(function () use ($service) {
+
+            $service = sprintf("App\\MessagingContuxtualBinding\\%sService", ucfirst($service));
+
+            return new $service;
+
+        });
+
+    app(MessagingStrategy::class)->send();
 
 });
