@@ -206,6 +206,32 @@ class UserLoginService => good
 parameters should not be greater than 3 
 =============================== ***** ===============================
 // no more if else
+open/close Principle => close for modification
+strategy design pattern
+adhoc polymorphism
+contuxtual binding
+=============================== ***** ===============================
+Demeter Law (Tell Don't Ask)
+=============================== ***** ===============================
+methods:
+1- props of objects of the same object .
+($this->name if in user model)
+2- other method of the same object.
+3- methods of recenetly created instances inside the method body.
+public function user()
+{
+    $userRepository = new UserRepository;
+    $userRepository->get();// good
+    $userRepository->get()->getProfile();// bad
+    // undefined => use if() to avoid error which not good
+    $userRepository->get()->getPhoto();// bad
+}
+4- object passed to arguments of the method, you can access the method of the passed object.
+=============================== ***** ===============================
+Do not chain object ->method->method->method->method->method this bad
+=============================== ***** ===============================
+
+
 
 
 
