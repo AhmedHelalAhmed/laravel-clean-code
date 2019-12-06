@@ -161,3 +161,28 @@ Route::get('/posts', function () {
     return Post::whereNOTNull('approved_at', true)->latest()->get();
 
 });
+
+/*
+repeated code
+or
+redirection based on some condition
+then think in middleware
+clear cache
+set section
+merge the request with something
+
+- code it once and used it more -
+where middleware
+
+controller and route
+
+ */
+
+/*
+Route::get('/profile', 'whatevercontroller')->middleware('auth');
+
+Route::group(['prefix' => 'premium', 'middleware' => ['auth', 'subscribe']], function () {
+
+// authorized user can view premium content
+});
+ */
