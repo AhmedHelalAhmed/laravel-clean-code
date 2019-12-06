@@ -24,9 +24,8 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'address' => Rule::exists('address', 'id')->where(function (Builder $builder) {
-                return $builder->where('user_id', $this->user()->id);
-            }),
+            'title' => 'required',
+
             'body' => 'required',
         ];
     }
@@ -35,7 +34,6 @@ class StorePostRequest extends FormRequest
     {
         return [
             'body.required' => 'custom message for required',
-            'address.exists' => '...',
         ];
     }
 
@@ -43,8 +41,7 @@ class StorePostRequest extends FormRequest
     public function attribute()
     {
         return [
-            'email' => 'email address',
-
+            'body' => 'post content',
         ];
     }
 

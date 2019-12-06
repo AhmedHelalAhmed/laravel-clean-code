@@ -2,40 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
+
 class PostController extends Controller
 {
-    private $post;
 
-    public function __construct(PostRepository $post)
+    public function store(StorePostRequest $request)
     {
-        $this->post = $post;
+        return Post::create($request->validated());
 
-        $this->middleware('auth', [
-            'only' => [
-                'store', 'update',
-            ],
-
-        ]);
-/* 
-$this->middleware('auth', [
-'except' => [
-'index',
-],
-
-]);
- */
     }
 
-    public function index()
-    {
-
-    }
-    public function store()
-    {
-
-    }
-    public function update()
-    {
-
-    }
 }
