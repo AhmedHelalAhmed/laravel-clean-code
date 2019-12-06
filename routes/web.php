@@ -10,14 +10,46 @@ use App\MessagingTwoWays\Strategy\MessagingService as Strategy;
 use App\Messaging\MessagingService;
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
+best practise for routes
+1- nouns =>'/products'
+2- plural
+3- Don't use GET/HEAD Headers for changing state
+- GET: index data or show specific data
+- POST: create/store
+- PUT/PATCH: update
+- DELETE : delete
+4- in case of nested relations
+- who is the parent: product
+Route::get('/products/{product}/orders') //index orders for passed product
+Route::get('/products/{product}/orders/{order}') // for show order
+or
+Route::get('/orders/{order}')
+depend on if you want product or not
+5- filters:(should be in query string)
+Route::get('/proucts')
+http://localhost:8000/products?limit=5;
+in controller
+$this->products->latest()->limit(request('limit')??-1)->get()
+6- response code in restful api
+200 => ok (and there is content)
+201 => created or acceptes
+204 => (no content)resource updated or delete and resource does not return content
+404 => not found
+422 => validation error
+500 => internal server error
+304 => redirection
+7- naming: for example : name('products.index') or name('products.is_active')
+- name('products.orders.create')
+- name('products.orders.index')
+- name('products.orders.delete')
+8- controller name should be singular
+9- to approve a post and disapprove =>PostApprovalController => store() & destroy()
+10- Route::resources([
+    'products.orders'=>'ProductOrdersController',
+    'products'=>'ProductController',
+    'orders'=>'OrderController'
+
+]);
  */
 
 Route::get('/', function () {
@@ -111,3 +143,5 @@ Route::get('/contuxtual-binding/{service}', function ($service) {
     app(MessagingStrategy::class)->send();
 
 });
+
+Route::resource('products.orders', 'ProductOrdersController');
