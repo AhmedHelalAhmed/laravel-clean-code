@@ -151,3 +151,13 @@ Route::get('/contuxtual-binding/{service}', function ($service) {
 });
 
 Route::resource('products.orders', 'ProductOrdersController');
+
+// use scopes for clearer queries
+Route::get('/posts', function () {
+
+    // return Post::where('approved', true)->latest()->get();
+
+    // instead of approved column extra just use approved_at
+    return Post::whereNOTNull('approved_at', true)->latest()->get();
+
+});
