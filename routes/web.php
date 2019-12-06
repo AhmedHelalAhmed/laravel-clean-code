@@ -45,11 +45,17 @@ $this->products->latest()->limit(request('limit')??-1)->get()
 8- controller name should be singular
 9- to approve a post and disapprove =>PostApprovalController => store() & destroy()
 10- Route::resources([
-    'products.orders'=>'ProductOrdersController',
-    'products'=>'ProductController',
-    'orders'=>'OrderController'
+'products.orders'=>'ProductOrdersController',
+'products'=>'ProductController',
+'orders'=>'OrderController'
 
 ]);
+//======================================================//
+Interface naming conventional
+(name + interface) ex => loggerInterface, workableInterface => not corrected make name very generic
+class => singlie responsablilty => FileLogger => specific not generic
+//======================================================//
+
  */
 
 Route::get('/', function () {
