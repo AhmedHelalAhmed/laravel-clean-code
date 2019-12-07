@@ -4,6 +4,7 @@ namespace App\Response;
 
 use App\Repositories\PostRepository;
 
+use App\Services\LocalFileUploadService;
 use Illuminate\Contracts\Support\Responsable;
 
 /*
@@ -17,6 +18,8 @@ class PostStoreResponse implements Responsable
 {
     private $posts;
     private $request;
+    const IMAGE_PATH = 'public/images';
+
 
     public function __construct(PostRepository $posts,array $request)
     {
@@ -41,5 +44,11 @@ class PostStoreResponse implements Responsable
 
         return response(null, 201);
 
+    }
+
+
+    protected function handleFileUpload($file)
+    {
+        return (new LocalFileUploadService($file))->save(self::IMAGE_PATH);
     }
 }
