@@ -22,6 +22,7 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     {
+//        dd($request->validated());
         return app(PostStoreService::class)->handle($request->validated());
     }
 
