@@ -186,3 +186,25 @@ Route::group(['prefix' => 'premium', 'middleware' => ['auth', 'subscribe']], fun
 // authorized user can view premium content
 });
  */
+
+/*
+types of events:
+
+1- user based action
+ex: user registered then i need to send email to him (user was registered)
+
+2- programmer based action do not related with user
+
+where:
+- in controller but we use services or responsable
+since controller is http layer (take request and send response)
+then we but events in services or responsable
+- do not fire events in Repository as it work for collection (and insert record recently)
+- job or event:
+job is order or command not based on action happened
+job work with single action
+event => more than one listener(stateless after event before event do not care)
+
+
+
+ */
