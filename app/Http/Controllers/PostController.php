@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Response\PostStoreResponse;
 
 class PostController extends Controller
 {
 
-    public function store()
+    public function store(StorePostRequest $request)
     {
         // dd($request->all());
 
@@ -23,7 +24,9 @@ class PostController extends Controller
         // to solve this
         */
 
-        return app(PostStoreResponse::class);
+        return app(PostStoreResponse::class, [
+            'request' => $request->validated()
+        ]);
         // in this case laravel automatically inject PostRepository
 
     }

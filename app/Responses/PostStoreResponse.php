@@ -6,13 +6,22 @@ use App\Repositories\PostRepository;
 
 use Illuminate\Contracts\Support\Responsable;
 
+/*
+ *  store action implementation only
+ *  this make the code single with it self
+ *  you can make protected methods as you like
+ *  instead of using controller
+ *  this way to prepare data instead of making protected functions in controller
+ */
 class PostStoreResponse implements Responsable
 {
     private $posts;
+    private $request;
 
-    public function __construct(PostRepository $posts)
+    public function __construct(PostRepository $posts,array $request)
     {
         $this->posts = $posts;
+        $this->request = $request;
     }
 
     /**
@@ -28,7 +37,7 @@ class PostStoreResponse implements Responsable
           this will call magic function __call and it will handle that
 
          */
-        $this->posts->create($request->all());
+        $this->posts->create($this->request);
 
         return response(null, 201);
 
