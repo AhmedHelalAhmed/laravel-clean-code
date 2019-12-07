@@ -36,7 +36,6 @@ class UserRegisterTest extends TestCase
             'name' => 'ahmed',
             'password' => 'secret123!@#',
             'password_confirmation' => 'secret123!@#',
-
             'email' => 'ahmed.helal.online@gmail.com'
         ]);
         // you may use user factory instead
@@ -49,7 +48,12 @@ class UserRegisterTest extends TestCase
 
         });
 
-
+    /*
+     *
+     * this tested in the app service provider
+     *
+     *
+     */
     }
 
 
@@ -60,7 +64,7 @@ class UserRegisterTest extends TestCase
     public function it_should_push_the_email_to_the_queue_via_event()
     {
         //Event::fake();// shoud commentted
-        Queue::fake();
+        Queue::fake(); // it's the matter of array
         $this->post('/api/auth/register', $user = [
             'name' => 'ahmed',
             'password' => 'secret123!@#',

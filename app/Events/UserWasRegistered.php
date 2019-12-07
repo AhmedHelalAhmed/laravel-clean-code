@@ -10,7 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 class UserWasRegistered
 {
     use Dispatchable, SerializesModels;
-    public $user, $token;
+    public $user, $token, $feedback;
 
 
     /**
@@ -18,11 +18,12 @@ class UserWasRegistered
      * @param User $user
      * @param $token
      */
-    public function __construct(User $user,$token)
+    public function __construct(User $user, $token)
     {
 
-        $this->user=$user;
-        $this->token=$token;
+        $this->user = $user;
+        $this->token = $token;
+        $this->feedback = 'Email has been sent, check your mail.';
     }
 
 
