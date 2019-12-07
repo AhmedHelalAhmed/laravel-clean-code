@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
+use App\Models\Post;
 use App\Services\PostStoreService;
 
 //use App\Response\PostStoreResponse;
@@ -24,6 +25,12 @@ class PostController extends Controller
     {
 //        dd($request->validated());
         return app(PostStoreService::class)->handle($request->validated());
+    }
+
+
+    public function index()
+    {
+        return Post::all();
     }
 
 }

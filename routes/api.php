@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/posts', 'PostController@store');
 Route::post('/auth/register', UserRegisterController::class);
+Route::get('/posts', 'PostController@index')->middleware('Debugbar');
