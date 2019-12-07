@@ -14,6 +14,7 @@ use Illuminate\Contracts\Support\Responsable;
  *  instead of using controller
  *  this way to prepare data instead of making protected functions in controller
  */
+
 class PostStoreResponse implements Responsable
 {
     private $posts;
@@ -21,7 +22,7 @@ class PostStoreResponse implements Responsable
     const IMAGE_PATH = 'public/images';
 
 
-    public function __construct(PostRepository $posts,array $request)
+    public function __construct(PostRepository $posts, array $request)
     {
         $this->posts = $posts;
         $this->request = $request;
@@ -40,7 +41,12 @@ class PostStoreResponse implements Responsable
           this will call magic function __call and it will handle that
 
          */
-        $this->posts->create($this->request);
+        $this->posts->create(
+            array_merge($this->request, [
+                'image' => $this->handleFileUpload($this->request['image'])->getFileName()
+            ])
+        );
+
 
         return response(null, 201);
 
