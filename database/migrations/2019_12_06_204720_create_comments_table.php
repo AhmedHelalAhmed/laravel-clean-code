@@ -17,6 +17,8 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->text('body');
             $table->date('approved_at')->nullable();
+            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('post_id')->index();
             $table->timestamps();
         });
     }

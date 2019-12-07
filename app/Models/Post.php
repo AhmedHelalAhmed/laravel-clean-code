@@ -21,4 +21,9 @@ class Post extends Model
         'approved_at',
     ];
 
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
