@@ -205,6 +205,10 @@ job is order or command not based on action happened
 job work with single action
 event => more than one listener(stateless after event before event do not care)
 
-
-
+- when to think of queue and jobs
+when hit email when you register
+do not make user wait until the email feedback return
+just put it in queue and make the user check the email not to wait the response
+encode for file for example
+anything may take long time push it to queue
  */
